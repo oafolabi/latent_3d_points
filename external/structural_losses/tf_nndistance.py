@@ -56,17 +56,17 @@ if __name__=='__main__':
 		t0=time.time()
 		t1=t0
 		best=1e100
-		for i in xrange(100):
+		for i in range(100):
 			trainloss,_=sess.run([loss,train])
 			newt=time.time()
 			best=min(best,newt-t1)
-			print i,trainloss,(newt-t0)/(i+1),best
+			print(i,trainloss,(newt-t0)/(i+1),best)
 			t1=newt
-		#print sess.run([inp1,retb,inp2,retd])
+		#print(sess.run([inp1,retb,inp2,retd]))
 		#grads=compute_gradient([inp1,inp2],[(16,32,3),(16,32,3)],loss,(1,),[xyz1,xyz2])
 		#for i,j in grads:
 			#print i.shape,j.shape,np.mean(np.abs(i-j)),np.mean(np.abs(i)),np.mean(np.abs(j))
-		#for i in xrange(10):
+		#for i in range(10):
 			#t0=time.time()
 			#a,b,c,d=sess.run([reta,retb,retc,retd],feed_dict={inp1:xyz1,inp2:xyz2})
 			#print 'time',time.time()-t0

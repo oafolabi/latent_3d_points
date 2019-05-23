@@ -101,7 +101,7 @@ if __name__=='__main__':
 				cv2.circle(show,(int(y*100+200),int(x*100+200)),3,cv2.cv.CV_RGB(0,0,255))
 			cost=((tpoints[0][:,None,:]-np.repeat(trainmypoints[0][None,:,:],4,axis=1))**2).sum(axis=2)**0.5
 			#trueloss=bestmatch.bestmatch(cost)[0]
-			print trainloss#,trueloss
+			print(trainloss)#,trueloss
 			cv2.imshow('show',show)
 			cmd=cv2.waitKey(10)%256
 			if cmd==ord('q'):
