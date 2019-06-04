@@ -34,7 +34,7 @@ def encoder_with_convs_and_symmetry(in_signal, n_filters=[64, 128, 256, 1024], f
     if n_layers < 2:
         raise ValueError('More than 1 layers are expected.')
 
-    for i in xrange(n_layers):
+    for i in range(n_layers):
         if i == 0:
             layer = in_signal
 
@@ -93,7 +93,7 @@ def decoder_with_fc_only(latent_signal, layer_sizes=[], b_norm=True, non_lineari
     if n_layers < 2:
         raise ValueError('For an FC decoder with single a layer use simpler code.')
 
-    for i in xrange(0, n_layers - 1):
+    for i in range(0, n_layers - 1):
         name = 'decoder_fc_' + str(i)
         scope_i = expand_scope_by_name(scope, name)
 
@@ -155,7 +155,7 @@ def decoder_with_convs_only(in_signal, n_filters, filter_sizes, strides, padding
     strides = replicate_parameter_for_all_layers(strides, n_layers)
     dropout_prob = replicate_parameter_for_all_layers(dropout_prob, n_layers)
 
-    for i in xrange(n_layers):
+    for i in range(n_layers):
         if i == 0:
             layer = in_signal
 

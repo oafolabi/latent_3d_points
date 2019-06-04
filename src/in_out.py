@@ -63,7 +63,7 @@ def unpickle_data(file_name):
     '''
     inFile = open(file_name, 'rb')
     size = cPickle.load(inFile)
-    for _ in xrange(size):
+    for _ in range(size):
         yield cPickle.load(inFile)
     inFile.close()
 
