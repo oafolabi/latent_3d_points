@@ -79,7 +79,8 @@ class Configuration():
 
     @staticmethod
     def load(file_name):
-        return unpickle_data(file_name + '.pickle').next()
+        #return unpickle_data(file_name + '.pickle').next()
+        return next(unpickle_data(file_name + '.pickle'))
 
 
 class AutoEncoder(Neural_Net):
