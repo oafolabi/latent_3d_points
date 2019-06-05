@@ -1,6 +1,13 @@
-nvcc = /usr/local/cuda-8.0/bin/nvcc
-cudalib =  /usr/local/cuda-8.0/lib64
-tensorflow = /orions4-zfs/projects/optas/Virt_Env/tf_1.3/lib/python2.7/site-packages/tensorflow/include
+nvcc = $(CUDA_DIR)/bin/nvcc
+cudalib = $(CUDA_DIR)/lib64
+#cudalib =  /global/software/sl-7.x86_64/modules/langs/cuda/9.0/lib64
+#TF_INC=$(python -c 'import tensorflow as tf; print(tf.sysconfig.get_include())')
+
+#tensorflow =/global/home/users/williamdai/.local/lib/python3.6/site-packages/tensorflow/include 
+
+tensorflow = $(TF_INC)
+
+#$(info $$tensorflow is [${tensorflow}])
 
 all: tf_approxmatch_so.so tf_approxmatch_g.cu.o tf_nndistance_so.so tf_nndistance_g.cu.o
 
@@ -24,4 +31,4 @@ tf_nndistance_g.cu.o: tf_nndistance_g.cu
 clean:
 	rm tf_approxmatch_so.so
 	rm tf_nndistance_so.so
-	rm  *.cu.o 
+	rm *.cu.o  
