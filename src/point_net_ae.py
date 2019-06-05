@@ -112,7 +112,7 @@ class PointNetAutoEncoder(AutoEncoder):
             fit = self.partial_fit
 
         # Loop over all batches
-        for _ in xrange(n_batches):
+        for _ in range(n_batches):
 
             if self.is_denoising:
                 original_data, _, batch_i = train_data.next_batch(batch_size)

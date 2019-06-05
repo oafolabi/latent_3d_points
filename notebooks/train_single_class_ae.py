@@ -3,6 +3,9 @@
 
 import sys
 import os.path as osp
+import datetime
+
+sys.path.insert(0,'../../')
 
 from latent_3d_points.src.ae_templates import mlp_architecture_ala_iclr_18, default_train_params
 from latent_3d_points.src.autoencoder import Configuration as Conf
@@ -13,7 +16,6 @@ from latent_3d_points.src.in_out import snc_category_to_synth_id, create_dir, Po
 from latent_3d_points.src.tf_utils import reset_tf_graph
 from latent_3d_points.src.general_utils import plot_3d_point_cloud
 
-sys.path.insert(0,'../../')
 
 
 if __name__ == "__main__":
@@ -26,7 +28,7 @@ if __name__ == "__main__":
     top_in_dir = sys.argv[2]
     top_out_dir = sys.argv[3]
 
-    experiment_name = 'single_class_ae' + '_' + class_name
+    experiment_name = 'single_class_ae' + '_' + class_name + '_' + datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
     n_pc_points = 2048                # Number of points per model.
     bneck_size = 128                  # Bottleneck-AE size
     ae_loss = 'chamfer'                   # Loss to optimize: 'emd' or 'chamfer'
@@ -35,11 +37,12 @@ if __name__ == "__main__":
 
 
     # Load Point-Clouds
+    print("Loading point clouds ...")
 
 
     syn_id = snc_category_to_synth_id()[class_name]
     class_dir = osp.join(top_in_dir , syn_id)
-    all_pc_data = load_all_point_clouds_under_folder(class_dir, n_threads=8, file_ending='.ply', verbose=True)
+    all_pc_data = load_all_point_clouds_under_folder(class_dir, n_threads=4, file_ending='.ply', verbose=True)
 
 
     # Load default training parameters (some of which are listed beloq). For more details please print the configuration object.
